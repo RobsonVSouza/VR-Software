@@ -1,0 +1,9 @@
+package com.vrSolutions.rentalsCar.repository;
+
+
+import com.vrSolutions.rentalsCar.models.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository <Category, Long> {
+
+}
