@@ -78,4 +78,6 @@ public class Car implements Serializable {
         return Objects.hash(id, name, description, dailyRate, available, licensePlate, brand,
                 category, color, createdAt);
     }
+
+
 }
