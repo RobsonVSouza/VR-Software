@@ -27,6 +27,14 @@ public class BrandService {
         return brandMapper.toDtoBrand(brandRepository.save(brandMapper.toBrandEntity(dtoBrand)));
     }
 
+    public BrandDto update(BrandDto dtoBrand){
+        Brand brandEntity = brandRepository.findByCar(dtoBrand.getCars());
+        if (brandEntity == null){
+            throw new EntityExistsException("Não tem aluguel cadastrado");
+        }
+        return brandMapper.toDtoBrand(brandRepository.save(brandMapper.toBrandEntity(dtoBrand)));
+    }
+
 
 
 }
