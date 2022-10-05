@@ -27,4 +27,5 @@ public class CarImage implements Serializable {
 
     @Column(name = "created_at")
     private String createdAt;
+
 }
