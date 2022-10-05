@@ -1,9 +1,10 @@
 package com.vrSolutions.rentalsCar.controllers;
 
+import com.vrSolutions.rentalsCar.dto.BrandDto;
+import com.vrSolutions.rentalsCar.dto.CarDto;
+import com.vrSolutions.rentalsCar.service.BrandService;
 import java.util.List;
 import javax.validation.Valid;
-import com.vrSolutions.rentalsCar.dto.CarDto;
-import com.vrSolutions.rentalsCar.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,39 +18,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/car")
-public class CarController {
+@RequestMapping("/brand")
+public class BrandController {
 
     @Autowired
-    private CarService carService;
+    private BrandService brandService;
 
-    @PostMapping(value = "v1/addCar")
-    public ResponseEntity<CarDto> save(@RequestBody @Valid CarDto carDto){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.save(carDto));
+    @PostMapping(value = "v1/addBrand")
+    public ResponseEntity<BrandDto> save(@RequestBody @Valid BrandDto brandDto){
+        return ResponseEntity.status(HttpStatus.OK).body(brandService.save(brandDto));
     }
 
-    @PutMapping ("/{id}")
-    public ResponseEntity<CarDto> update(@RequestBody CarDto carDto){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.update(carDto));
+    @PutMapping("/{id}")
+    public ResponseEntity<BrandDto> update(@RequestBody BrandDto brandDto){
+        return ResponseEntity.status(HttpStatus.OK).body(brandService.update(brandDto));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CarDto> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.findById(id));
+    public ResponseEntity<BrandDto> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(brandService.findById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<CarDto>> getAll(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.getAll());
+    public ResponseEntity<List<BrandDto>> getAll(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(brandService.getAll());
     }
-
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
-        carService.delete(id);
+        brandService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 
 }
