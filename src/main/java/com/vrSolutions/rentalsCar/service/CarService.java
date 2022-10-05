@@ -39,10 +39,14 @@ public class CarService {
 
     public CarDto findById(Long id){
         Optional<Car> carOptional = carRepository.findById(id);
+        findCarById(carOptional);
+        return carMapper.toDto(carOptional.get());
+    }
+
+    private static void findCarById(Optional<Car> carOptional) {
         if (carOptional.isEmpty()){
             throw new EntityNotFoundException("O carro não existe");
         }
-        return carMapper.toDto(carOptional.get());
     }
 
     public List<CarDto> getAll() {

@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RentalDto {
+public class CarsSpecificationDto {
 
     private Long id;
 

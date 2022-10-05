@@ -9,8 +9,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RentalDto {
+public class SpecificationDto {
 
     private Long id;
+
+    private String name;
+
+    private String description;
+
+    private String createdAt;
 
 }
