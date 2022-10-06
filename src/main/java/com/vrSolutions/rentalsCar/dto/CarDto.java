@@ -3,14 +3,12 @@ package com.vrSolutions.rentalsCar.dto;
 import com.vrSolutions.rentalsCar.models.Brand;
 import com.vrSolutions.rentalsCar.models.Category;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class CarDto {
 
     private Long id;

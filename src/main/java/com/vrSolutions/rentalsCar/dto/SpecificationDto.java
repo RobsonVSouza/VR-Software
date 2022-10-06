@@ -1,14 +1,13 @@
 package com.vrSolutions.rentalsCar.dto;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class SpecificationDto {
 
     private Long id;
@@ -17,6 +16,6 @@ public class SpecificationDto {
 
     private String description;
 
-    private String createdAt;
+    private LocalDateTime createdAt;
 
 }
