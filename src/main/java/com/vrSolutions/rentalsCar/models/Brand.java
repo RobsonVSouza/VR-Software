@@ -1,15 +1,12 @@
 package com.vrSolutions.rentalsCar.models;
 
 import java.io.Serializable;
-import java.util.Set;
-import javax.persistence.CascadeType;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,17 +23,13 @@ public class Brand implements Serializable {
     private Long id;
 
     @Column
-    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Car> cars;
-
-    @Column
     private String name;
 
     @Column
     private String description;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private LocalDateTime createdAt;
 
 
 }

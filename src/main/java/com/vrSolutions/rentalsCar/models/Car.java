@@ -1,6 +1,7 @@
 package com.vrSolutions.rentalsCar.models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,26 +42,22 @@ public class Car implements Serializable {
     @Column
     private String available;
 
-    @Column(name = "license_plate")
+    @Column(name = "license_plate",unique = true)
     private String licensePlate;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @OneToOne
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-    @Column
-    @OneToMany(mappedBy = "rental", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Rental> rentals;
 
     @Column
     private String color;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     @Override
     public boolean equals(Object o) {

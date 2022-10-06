@@ -21,33 +21,33 @@ import org.springframework.web.bind.annotation.RestController;
 public class CarController {
 
     @Autowired
-    private CarService carService;
+    private CarService carServiceImpl;
 
     @PostMapping(value = "v1/addCar")
     public ResponseEntity<CarDto> save(@RequestBody @Valid CarDto carDto){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.save(carDto));
+        return ResponseEntity.status(HttpStatus.OK).body(carServiceImpl.save(carDto));
     }
 
     @PutMapping ("/{id}")
     public ResponseEntity<CarDto> update(@RequestBody CarDto carDto){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.update(carDto));
+        return ResponseEntity.status(HttpStatus.OK).body(carServiceImpl.update(carDto));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CarDto> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(carServiceImpl.findById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<CarDto>> getAll(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(carService.getAll());
+        return ResponseEntity.status(HttpStatus.OK).body(carServiceImpl.getAll());
     }
 
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id){
-        carService.delete(id);
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        carServiceImpl.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

@@ -21,31 +21,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
 
     @Autowired
-    private static CategoryService categoryService;
+    private static CategoryService categoryServiceImpl;
 
     @PostMapping(value = "v1/addCategory")
     public ResponseEntity<CategoryDto> save(@RequestBody @Valid CategoryDto categoryDto){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.save(categoryDto));
+        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.save(categoryDto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDto> update(@RequestBody CategoryDto categoryDto){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.update(categoryDto));
+        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.update(categoryDto));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDto> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.findById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<CategoryDto>> getAll(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.getAll());
+        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.getAll());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id){
-        categoryService.delete(id);
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        categoryServiceImpl.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

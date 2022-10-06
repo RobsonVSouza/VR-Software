@@ -2,12 +2,14 @@ package com.vrSolutions.rentalsCar.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +30,7 @@ public class Customer implements Serializable {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
+    @Email
     @Column
     private String email;
 
@@ -41,10 +44,10 @@ public class Customer implements Serializable {
     private String phoneNumber;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "update_at")
-    private String updateAt;
+    private LocalDateTime updateAt;
 
 
 }

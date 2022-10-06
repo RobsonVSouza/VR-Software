@@ -21,31 +21,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpecificationController {
 
     @Autowired
-    private SpecificationService specificationService;
+    private SpecificationService specificationServiceImpl;
 
     @PostMapping(value = "v1/addSpecification")
     public ResponseEntity<SpecificationDto> save(@RequestBody @Valid SpecificationDto specificationDto){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationService.save(specificationDto));
+        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.save(specificationDto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<SpecificationDto> update(@RequestBody SpecificationDto specificationDto){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationService.update(specificationDto));
+        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.update(specificationDto));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SpecificationDto> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.findById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<SpecificationDto>> getAll(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationService.getAll());
+        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.getAll());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id){
-        specificationService.delete(id);
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        specificationServiceImpl.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

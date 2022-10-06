@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,10 @@ public class CarImage implements Serializable {
     private Long id;
 
     @Column
-    private Image image;
+    private String image;
+
+    @OneToOne
+    private Car car;
 
     @Column(name = "created_at")
     private String createdAt;

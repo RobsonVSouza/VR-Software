@@ -2,22 +2,19 @@ package com.vrSolutions.rentalsCar.models;
 
 
 import java.io.Serializable;
-import java.util.Set;
-import javax.persistence.CascadeType;
+import java.time.LocalDateTime;
+import java.util.Currency;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "rentals")
 public class Rental implements Serializable {
@@ -27,10 +24,30 @@ public class Rental implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Car> cars;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @OneToOne
     @JoinColumn(name = "rental", nullable = false)
     private Car car;
+
+    @OneToOne
+    @JoinColumn(name = "customer", nullable = false)
+    private  Customer customer;
+
+    @Column
+    private LocalDateTime startDate;
+
+    @Column
+    private LocalDateTime endDate;
+
+    @Column
+    private Currency total;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+
+
 }
