@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarImageRepository extends JpaRepository<CarImage, Long> {
 
+    CarImage findByImage(String image);
 }
