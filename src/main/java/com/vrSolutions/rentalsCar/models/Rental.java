@@ -2,6 +2,7 @@ package com.vrSolutions.rentalsCar.models;
 
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Currency;
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Data
 @Entity
@@ -34,19 +37,19 @@ public class Rental implements Serializable {
     private  Customer customer;
 
     @Column
-    private LocalDateTime startDate;
+    private Instant startDate;
 
     @Column
-    private LocalDateTime endDate;
+    private Instant endDate;
 
     @Column
     private Currency total;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @CreatedDate
+    private Instant createdAt;
 
-    @Column(name = "update_at")
-    private LocalDateTime updateAt;
+    @LastModifiedDate
+    private Instant updateAt;
 
 
 

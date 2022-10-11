@@ -1,5 +1,6 @@
 package com.vrSolutions.rentalsCar.dto;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -21,12 +22,12 @@ public class CustomerDto {
 
     private String driverLicense;
 
-    private String adress;
+    private String address;
 
     private String phoneNumber;
 
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
-    private LocalDateTime updateAt;
+    private Instant updateAt;
 
 }

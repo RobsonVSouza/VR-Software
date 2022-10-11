@@ -1,6 +1,7 @@
 package com.vrSolutions.rentalsCar.dto;
 
 import com.vrSolutions.rentalsCar.models.Car;
+import java.time.Instant;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,6 @@ public class BrandDto {
 
     private String description;
 
-    private String createdAt;
+    private Instant createdAt;
 
 }

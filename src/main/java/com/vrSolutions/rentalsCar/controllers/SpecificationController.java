@@ -23,7 +23,7 @@ public class SpecificationController {
     @Autowired
     private SpecificationService specificationServiceImpl;
 
-    @PostMapping(value = "v1/addSpecification")
+    @PostMapping
     public ResponseEntity<SpecificationDto> save(@RequestBody @Valid SpecificationDto specificationDto){
         return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.save(specificationDto));
     }

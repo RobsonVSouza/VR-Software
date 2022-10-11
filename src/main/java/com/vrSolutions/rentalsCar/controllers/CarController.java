@@ -23,7 +23,7 @@ public class CarController {
     @Autowired
     private CarService carServiceImpl;
 
-    @PostMapping(value = "/v1/addCar")
+    @PostMapping
     public ResponseEntity<CarDto> save(@RequestBody @Valid CarDto carDto){
         return ResponseEntity.status(HttpStatus.OK).body(carServiceImpl.save(carDto));
     }

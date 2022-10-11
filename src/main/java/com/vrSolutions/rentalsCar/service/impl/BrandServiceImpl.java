@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 class BrandServiceImpl implements BrandService {
 
-    @Autowired
-    private static BrandRepository brandRepository;
+    private final BrandRepository brandRepository;
 
-    @Autowired
-    private static BrandMapper brandMapper;
+    private final BrandMapper brandMapper;
 
     @Override
     public BrandDto save(BrandDto dtoBrand){

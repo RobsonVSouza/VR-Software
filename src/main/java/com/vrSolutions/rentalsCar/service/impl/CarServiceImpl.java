@@ -33,13 +33,16 @@ public class CarServiceImpl implements CarService {
     @Override public CarDto update(CarDto dto){
         Car carEntity = carRepository.findByLicensePlate(dto.getLicensePlate());
         if (carEntity == null){
-            throw new EntityExistsException("Não existe carro cadastrado");
+            throw new EntityNotFoundException("Não existe carro cadastrado");
         }
         return carMapper.toDto(carRepository.save(carMapper.toEntity(dto)));
     }
 
     @Override public CarDto findById(Long id){
         Optional<Car> carOptional = carRepository.findById(id);
+        if (carOptional.isEmpty()){
+            throw new EntityNotFoundException("O carro não existe no cadastro");
+        }
         return carMapper.toDto(carOptional.get());
     }
 

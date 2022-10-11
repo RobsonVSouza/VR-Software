@@ -32,13 +32,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override public CustomerDto update(CustomerDto dto){
         Customer customerEntity = customerRepository.findByDriverLicense(dto.getDriverLicense());
         if (customerEntity == null){
-            throw new EntityExistsException("Não existe cliente cadastrado");
+            throw new EntityNotFoundException("Não existe cliente cadastrado");
         }
         return customerMapper.toDto(customerRepository.save(customerMapper.toEntity(dto)));
     }
 
     @Override public CustomerDto findById(Long id){
         Optional<Customer> customerOptional = customerRepository.findById(id);
+        if (customerOptional.isEmpty()){
+            throw new EntityNotFoundException("O cliente não existe no cadastro");
+        }
         return customerMapper.toDto(customerOptional.get());
     }
 

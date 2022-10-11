@@ -24,13 +24,13 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
-    @PostMapping(value = "v1/addBrand")
+    @PostMapping
     public ResponseEntity<BrandDto> save(@RequestBody @Valid BrandDto brandDto){
         return ResponseEntity.status(HttpStatus.OK).body(brandService.save(brandDto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BrandDto> update(@RequestBody BrandDto brandDto){
+    public ResponseEntity<BrandDto> update(@RequestBody BrandDto brandDto, @PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(brandService.update(brandDto));
     }
 

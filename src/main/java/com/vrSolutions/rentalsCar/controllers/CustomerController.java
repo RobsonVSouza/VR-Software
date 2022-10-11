@@ -1,7 +1,8 @@
 package com.vrSolutions.rentalsCar.controllers;
 
-import com.vrSolutions.rentalsCar.dto.CategoryDto;
-import com.vrSolutions.rentalsCar.service.CategoryService;
+import com.vrSolutions.rentalsCar.dto.CarDto;
+import com.vrSolutions.rentalsCar.dto.CustomerDto;
+import com.vrSolutions.rentalsCar.service.CustomerService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,35 +18,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/customer")
+public class CustomerController {
 
     @Autowired
-    private static CategoryService categoryServiceImpl;
+    private CustomerService customerServiceImpl;
 
     @PostMapping
-    public ResponseEntity<CategoryDto> save(@RequestBody @Valid CategoryDto categoryDto){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.save(categoryDto));
+    public ResponseEntity<CustomerDto> save(@RequestBody @Valid CustomerDto customerDto){
+        return ResponseEntity.status(HttpStatus.OK).body(customerServiceImpl.save(customerDto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDto> update(@RequestBody CategoryDto categoryDto){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.update(categoryDto));
+    public ResponseEntity<CustomerDto> update(@RequestBody CustomerDto customerDto){
+        return ResponseEntity.status(HttpStatus.OK).body(customerServiceImpl.update(customerDto));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDto> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.findById(id));
+    public ResponseEntity<CustomerDto> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(customerServiceImpl.findById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryDto>> getAll(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryServiceImpl.getAll());
+    public ResponseEntity<List<CustomerDto>> getAll(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(customerServiceImpl.getAll());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        categoryServiceImpl.delete(id);
+        customerServiceImpl.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

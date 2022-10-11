@@ -1,22 +1,20 @@
 package com.vrSolutions.rentalsCar.models;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 
 @Data
 @Entity
-@Table(name = "Categories")
+@Table(name = "categories")
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -27,12 +25,7 @@ public class Category implements Serializable {
     @Column
     private String name;
 
-    @Column
-    private String description;
+    @CreatedDate
+    private Instant createdAt;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Car> cars;
 }

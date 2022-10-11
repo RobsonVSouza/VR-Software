@@ -1,14 +1,17 @@
 package com.vrSolutions.rentalsCar.models;
 
 import java.io.Serializable;
+import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 
 @Data
 @Entity
@@ -23,10 +26,10 @@ public class CarImage implements Serializable {
     @Column
     private String image;
 
-    @OneToOne
+    @ManyToOne
     private Car car;
 
-    @Column(name = "created_at")
-    private String createdAt;
+    @CreatedDate
+    private Instant createdAt;
 
 }

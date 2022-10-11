@@ -32,7 +32,7 @@ public class SpecificationServiceImpl implements SpecificationService {
     @Override public SpecificationDto update(SpecificationDto dto){
         Specification specificationEntity = specificationRepository.findByName(dto.getName());
         if (specificationEntity == null){
-            throw new EntityExistsException("Não espefificaçao cadastrada");
+            throw new EntityNotFoundException("Não espefificaçao cadastrada");
         }
         return specificationMapper.toDto(specificationRepository.save(specificationMapper.toEntity(dto)));
     }
@@ -53,7 +53,7 @@ public class SpecificationServiceImpl implements SpecificationService {
         Optional<Specification> specificationOptional = specificationRepository.findById(id);
 
         if (specificationOptional.isEmpty()){
-            throw new EntityNotFoundException("Não foi possivel deletar a espefificaçao");
+            throw new EntityNotFoundException("Não foi possivel deletar a especificaçao");
         }
         specificationRepository.deleteById(id);
     }

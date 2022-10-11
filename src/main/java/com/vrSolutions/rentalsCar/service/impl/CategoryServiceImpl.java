@@ -32,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override public CategoryDto update(CategoryDto dto){
         Category CategoryEntity = categoryRepository.findByName(dto.getName());
         if (CategoryEntity == null){
-            throw new EntityExistsException("Não existe categoria cadastrada");
+            throw new EntityNotFoundException("Não existe categoria cadastrada");
         }
         return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(dto)));
     }

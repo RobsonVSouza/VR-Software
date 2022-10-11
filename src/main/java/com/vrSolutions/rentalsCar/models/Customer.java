@@ -1,6 +1,7 @@
 package com.vrSolutions.rentalsCar.models;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Data
 @Entity
@@ -36,16 +39,16 @@ public class Customer implements Serializable {
     private String driverLicense;
 
     @Column
-    private String adress;
+    private String address;
 
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @CreatedDate
+    private Instant createdAt;
 
-    @Column(name = "update_at")
-    private LocalDateTime updateAt;
+    @LastModifiedDate
+    private Instant updateAt;
 
 
 }
