@@ -2,7 +2,6 @@ package com.vrSolutions.rentalsCar.models;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +25,6 @@ public class Category implements Serializable {
     private String name;
 
     @CreatedDate
-    private Instant createdAt;
+    private Instant createdAt = Instant.now();
 
 }

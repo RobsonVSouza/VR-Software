@@ -1,7 +1,7 @@
 package com.vrSolutions.rentalsCar.controllers;
 
-import com.vrSolutions.rentalsCar.dto.CategoryDto;
-import com.vrSolutions.rentalsCar.service.CategoryService;
+import com.vrSolutions.rentalsCar.dto.RentalDto;
+import com.vrSolutions.rentalsCar.service.RentalService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,36 +17,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/rental")
+public class RentalController {
 
     @Autowired
-    private CategoryService categoryService;
+    private RentalService rentalService;
 
     @PostMapping
-    public ResponseEntity<CategoryDto> save(@RequestBody @Valid CategoryDto categoryDto){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.save(categoryDto));
+    public ResponseEntity<RentalDto> save(@RequestBody @Valid RentalDto brandDto){
+        return ResponseEntity.status(HttpStatus.OK).body(rentalService.save(brandDto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDto> update(@PathVariable Long id, @RequestBody CategoryDto categoryDto){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.update(id, categoryDto));
+    public ResponseEntity<RentalDto> update(@PathVariable Long id,
+            @RequestBody @Valid RentalDto rentalDto){
+        return ResponseEntity.status(HttpStatus.OK).body(rentalService.update(id, rentalDto));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDto> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.findById(id));
+    public ResponseEntity<RentalDto> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(rentalService.findById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryDto>> getAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.getAll());
+    public ResponseEntity<List<RentalDto>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(rentalService.getAll());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        categoryService.delete(id);
+        rentalService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

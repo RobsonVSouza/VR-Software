@@ -30,8 +30,8 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDto> update(@RequestBody CustomerDto customerDto){
-        return ResponseEntity.status(HttpStatus.OK).body(customerServiceImpl.update(customerDto));
+    public ResponseEntity<CustomerDto> update(@PathVariable Long id, @RequestBody @Valid CustomerDto customerDto){
+        return ResponseEntity.status(HttpStatus.OK).body(customerServiceImpl.update(id, customerDto));
     }
 
     @GetMapping("/{id}")
@@ -40,7 +40,7 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerDto>> getAll(@PathVariable Long id){
+    public ResponseEntity<List<CustomerDto>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(customerServiceImpl.getAll());
     }
 

@@ -7,7 +7,7 @@ public interface CustomerService {
 
     CustomerDto save(CustomerDto dto);
 
-    CustomerDto update(CustomerDto dto);
+    CustomerDto update(Long id, CustomerDto dto);
 
     CustomerDto findById(Long id);
 

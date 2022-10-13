@@ -7,7 +7,7 @@ public interface BrandService {
 
     BrandDto save(BrandDto dtoBrand);
 
-    BrandDto update(BrandDto dtoBrand);
+    BrandDto update(Long id, BrandDto dtoBrand);
 
     BrandDto findById(Long id);
 

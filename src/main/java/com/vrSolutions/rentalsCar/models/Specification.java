@@ -27,7 +27,7 @@ public class Specification implements Serializable {
     private String name;
 
     @CreatedDate
-    private Instant createdAt;
+    private Instant createdAt = Instant.now();
 
     @ManyToOne()
     private Car car;

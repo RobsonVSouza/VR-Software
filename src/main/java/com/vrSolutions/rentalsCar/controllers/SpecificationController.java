@@ -21,31 +21,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpecificationController {
 
     @Autowired
-    private SpecificationService specificationServiceImpl;
+    private SpecificationService specificationService;
 
     @PostMapping
     public ResponseEntity<SpecificationDto> save(@RequestBody @Valid SpecificationDto specificationDto){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.save(specificationDto));
+        return ResponseEntity.status(HttpStatus.OK).body(specificationService.save(specificationDto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SpecificationDto> update(@RequestBody SpecificationDto specificationDto){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.update(specificationDto));
+    public ResponseEntity<SpecificationDto> update(@PathVariable Long id,
+            @RequestBody @Valid SpecificationDto specificationDto){
+        return ResponseEntity.status(HttpStatus.OK).body(specificationService.update(id, specificationDto));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SpecificationDto> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(specificationService.findById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<SpecificationDto>> getAll(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(specificationServiceImpl.getAll());
+    public ResponseEntity<List<SpecificationDto>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(specificationService.getAll());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        specificationServiceImpl.delete(id);
+        specificationService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

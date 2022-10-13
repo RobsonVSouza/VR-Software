@@ -7,7 +7,7 @@ public interface SpecificationService {
 
     SpecificationDto save(SpecificationDto dto);
 
-    SpecificationDto update(SpecificationDto dto);
+    SpecificationDto update(Long id, SpecificationDto dto);
 
     SpecificationDto findById(Long id);
 

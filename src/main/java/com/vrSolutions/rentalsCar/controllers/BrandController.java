@@ -30,8 +30,9 @@ public class BrandController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BrandDto> update(@RequestBody BrandDto brandDto, @PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(brandService.update(brandDto));
+    public ResponseEntity<BrandDto> update(@PathVariable Long id,
+            @RequestBody @Valid BrandDto brandDto){
+        return ResponseEntity.status(HttpStatus.OK).body(brandService.update(id, brandDto));
     }
 
     @GetMapping("/{id}")
@@ -40,7 +41,7 @@ public class BrandController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BrandDto>> getAll(@PathVariable Long id){
+    public ResponseEntity<List<BrandDto>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(brandService.getAll());
     }
 

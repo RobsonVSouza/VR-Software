@@ -45,10 +45,10 @@ public class Customer implements Serializable {
     private String phoneNumber;
 
     @CreatedDate
-    private Instant createdAt;
+    private Instant createdAt = Instant.now();
 
     @LastModifiedDate
-    private Instant updateAt;
+    private Instant updateAt = Instant.now();
 
 
 }

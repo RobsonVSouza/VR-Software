@@ -9,30 +9,32 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SpecificationServiceImpl implements SpecificationService {
+@RequiredArgsConstructor
+class SpecificationServiceImpl implements SpecificationService {
 
-    @Autowired
-    private static SpecificationRepository specificationRepository;
+    private final SpecificationRepository specificationRepository;
 
-    @Autowired
-    private static SpecificationMapper specificationMapper;
+    private final SpecificationMapper specificationMapper;
 
-    @Override public SpecificationDto save(SpecificationDto dto){
-        Specification specificationEntity = specificationRepository.findByName(dto.getName());
-        if (specificationEntity != null){
+    @Override
+    public SpecificationDto save(SpecificationDto dto){
+        Optional <Specification> specificationEntity = specificationRepository.findByName(dto.getName());
+        if (specificationEntity.isPresent()){
             throw new EntityExistsException("Já espefificaçao cadastrada");
         }
         return specificationMapper.toDto(specificationRepository.save(specificationMapper.toEntity(dto)));
     }
 
-    @Override public SpecificationDto update(SpecificationDto dto){
-        Specification specificationEntity = specificationRepository.findByName(dto.getName());
-        if (specificationEntity == null){
-            throw new EntityNotFoundException("Não espefificaçao cadastrada");
+    @Override
+    public SpecificationDto update(Long id,SpecificationDto dto){
+        Optional <Specification> specificationEntity = specificationRepository.findById(id);
+        if (specificationEntity.isEmpty()){
+            throw new EntityNotFoundException("Não existe");
         }
         return specificationMapper.toDto(specificationRepository.save(specificationMapper.toEntity(dto)));
     }

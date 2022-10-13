@@ -2,6 +2,7 @@ package com.vrSolutions.rentalsCar.dto;
 
 import com.vrSolutions.rentalsCar.models.Car;
 import com.vrSolutions.rentalsCar.models.Customer;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Currency;
 import lombok.AllArgsConstructor;
@@ -19,14 +20,14 @@ public class RentalDto {
 
     private Customer customer;
 
-    private LocalDateTime startDate;
+    private Instant startDate;
 
-    private LocalDateTime endDate;
+    private Instant endDate;
 
     private Currency total;
 
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
-    private LocalDateTime updateAt;
+    private Instant updateAt;
 
 }

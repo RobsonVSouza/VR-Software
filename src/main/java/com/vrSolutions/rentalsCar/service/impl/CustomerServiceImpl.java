@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    private static CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-    @Autowired
-    private static CustomerMapper customerMapper;
+    private final CustomerMapper customerMapper;
 
     @Override public CustomerDto save(CustomerDto dto){
         Customer customerEntity = customerRepository.findByDriverLicense(dto.getDriverLicense());
@@ -29,10 +29,10 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.toDto(customerRepository.save(customerMapper.toEntity(dto)));
     }
 
-    @Override public CustomerDto update(CustomerDto dto){
-        Customer customerEntity = customerRepository.findByDriverLicense(dto.getDriverLicense());
-        if (customerEntity == null){
-            throw new EntityNotFoundException("Não existe cliente cadastrado");
+    @Override public CustomerDto update(Long id, CustomerDto dto){
+        Optional<Customer> customerEntity = customerRepository.findById(id);
+        if (customerEntity.isEmpty()){
+            throw new EntityNotFoundException("O cliente não existe no cadastro");
         }
         return customerMapper.toDto(customerRepository.save(customerMapper.toEntity(dto)));
     }

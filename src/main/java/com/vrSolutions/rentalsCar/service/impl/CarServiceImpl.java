@@ -9,18 +9,20 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class CarServiceImpl implements CarService {
+@RequiredArgsConstructor
+class CarServiceImpl implements CarService {
 
-    @Autowired
-    private static CarRepository carRepository;
 
-    @Autowired
-    private static CarMapper carMapper;
+    private final CarRepository carRepository;
+
+
+    private final CarMapper carMapper;
 
     @Override public CarDto save(CarDto dto){
         Car carEntity = carRepository.findByLicensePlate(dto.getLicensePlate());

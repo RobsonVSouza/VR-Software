@@ -39,7 +39,7 @@ public class CarController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CarDto>> getAll(@PathVariable Long id){
+    public ResponseEntity<List<CarDto>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(carServiceImpl.getAll());
     }
 

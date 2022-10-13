@@ -46,10 +46,10 @@ public class Rental implements Serializable {
     private Currency total;
 
     @CreatedDate
-    private Instant createdAt;
+    private Instant createdAt = Instant.now();
 
     @LastModifiedDate
-    private Instant updateAt;
+    private Instant updateAt = Instant.now();
 
 
 
